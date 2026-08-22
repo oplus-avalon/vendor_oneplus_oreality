@@ -41,6 +41,7 @@ public final class MainActivity extends Activity {
     private SettingsRepository settingsRepository;
     private ToggleSwitch masterSwitch;
     private EqualizerView equalizerView;
+    private LinearLayout eqHeader;
     private ColorScheme colors;
     private final Map<SoundProfile, ProfileCard> profileViews = new EnumMap<>(SoundProfile.class);
     private SharedPreferences.OnSharedPreferenceChangeListener settingsListener;
@@ -133,7 +134,7 @@ public final class MainActivity extends Activity {
             grid.addView(profileCard.root);
         }
 
-        LinearLayout eqHeader = new LinearLayout(this);
+        eqHeader = new LinearLayout(this);
         eqHeader.setGravity(Gravity.CENTER_VERTICAL);
         eqHeader.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams eqHeaderParams = new LinearLayout.LayoutParams(
@@ -186,9 +187,16 @@ public final class MainActivity extends Activity {
             card.artwork.setSelectedState(selected);
         }
 
+        if (eqHeader != null) {
+            boolean musicSelected = selectedProfile == SoundProfile.MUSIC;
+            eqHeader.setVisibility(musicSelected ? View.VISIBLE : View.GONE);
+        }
+
         if (equalizerView != null) {
-            equalizerView.setEnabled(enabled);
-            equalizerView.setAlpha(enabled ? 1f : 0.55f);
+            boolean musicSelected = selectedProfile == SoundProfile.MUSIC;
+            equalizerView.setVisibility(musicSelected ? View.VISIBLE : View.GONE);
+            equalizerView.setEnabled(enabled && musicSelected);
+            equalizerView.setAlpha(enabled && musicSelected ? 1f : 0.55f);
             equalizerView.setGains(settingsRepository.getEqualizerGains(settingsRepository.getProfile()));
         }
     }
