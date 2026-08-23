@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -72,21 +74,22 @@ public final class MainActivity extends Activity {
 
         LinearLayout content = new LinearLayout(this);
         content.setOrientation(LinearLayout.VERTICAL);
-        content.setPadding(dp(20), dp(42), dp(20), dp(26));
+        content.setPadding(dp(20), dp(44), dp(20), dp(18));
         scrollView.addView(content, new ScrollView.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        TextView pageTitle = label("OReality Audio", 28, true);
+        TextView pageTitle = label("OReality Audio", 24, true);
         pageTitle.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         pageTitle.setIncludeFontPadding(false);
         LinearLayout.LayoutParams pageTitleParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        pageTitleParams.setMargins(dp(8), 0, 0, dp(18));
+        pageTitleParams.setMargins(dp(8), 0, 0, dp(12));
         content.addView(pageTitle, pageTitleParams);
 
         LinearLayout masterCard = card();
         masterCard.setGravity(Gravity.CENTER_VERTICAL);
+        masterCard.setPadding(dp(20), dp(16), dp(20), dp(16));
         LinearLayout.LayoutParams masterParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         masterParams.setMargins(0, 0, 0, 0);
@@ -94,15 +97,15 @@ public final class MainActivity extends Activity {
 
         LinearLayout masterText = new LinearLayout(this);
         masterText.setOrientation(LinearLayout.VERTICAL);
-        TextView masterTitle = label("OReality Audio", 22, true);
+        TextView masterTitle = label("OReality Audio", 20, true);
         masterTitle.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         TextView masterSummary = label(
                 "OReality Audio is OPPO Audio Lab's new audio enhancement technology developed "
                         + "to improve audio performance in various scenarios for an immersive sound experience.",
                 12,
                 false);
-        masterSummary.setPadding(0, dp(8), 0, 0);
-        masterSummary.setLineSpacing(dp(2), 1f);
+        masterSummary.setPadding(0, dp(4), 0, 0);
+        masterSummary.setLineSpacing(dp(1), 1f);
         masterText.addView(masterTitle);
         masterText.addView(masterSummary);
 
@@ -116,11 +119,11 @@ public final class MainActivity extends Activity {
         switchParams.setMargins(dp(18), 0, 0, 0);
         masterCard.addView(masterSwitch, switchParams);
 
-        TextView profilesTitle = label("Select sound profile", 20, true);
+        TextView profilesTitle = label("Select sound profile", 18, true);
         profilesTitle.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        titleParams.setMargins(dp(8), dp(34), 0, dp(18));
+        titleParams.setMargins(dp(8), dp(22), 0, dp(12));
         content.addView(profilesTitle, titleParams);
 
         GridLayout grid = new GridLayout(this);
@@ -139,7 +142,7 @@ public final class MainActivity extends Activity {
         eqHeader.setOrientation(LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams eqHeaderParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        eqHeaderParams.setMargins(dp(8), dp(6), dp(8), dp(12));
+        eqHeaderParams.setMargins(dp(8), dp(4), dp(8), dp(8));
         content.addView(eqHeader, eqHeaderParams);
 
         TextView eqTitle = label("EQ", 18, true);
@@ -159,7 +162,7 @@ public final class MainActivity extends Activity {
         equalizerView.setGains(settingsRepository.getEqualizerGains(settingsRepository.getProfile()));
         equalizerView.setOnGainsChangeListener(gains -> settingsRepository.setEqualizerGains(settingsRepository.getProfile(), gains));
         content.addView(equalizerView, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(188)));
+                ViewGroup.LayoutParams.MATCH_PARENT, dp(168)));
 
         return scrollView;
     }
@@ -214,32 +217,32 @@ public final class MainActivity extends Activity {
         gridParams.width = 0;
         gridParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
         gridParams.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);
-        gridParams.setMargins(dp(8), 0, dp(8), dp(26));
+        gridParams.setMargins(dp(8), 0, dp(8), dp(16));
         root.setLayoutParams(gridParams);
 
         FrameLayout artworkFrame = new FrameLayout(this);
         artworkFrame.setClipToOutline(false);
         artworkFrame.setBackground(artworkBackground(false));
         root.addView(artworkFrame, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(124)));
+                ViewGroup.LayoutParams.MATCH_PARENT, dp(112)));
 
         ProfileArtwork artwork = new ProfileArtwork(this, profile, colors);
         artworkFrame.addView(artwork, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
-        TextView title = label(profile.getTitle(), 16, true);
+        TextView title = label(profile.getTitle(), 14, true);
         title.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         title.setTextColor(Color.WHITE);
         title.setShadowLayer(dp(2), 0, dp(1), Color.argb(90, 0, 0, 0));
         FrameLayout.LayoutParams overlayParams = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,
                 Gravity.LEFT | Gravity.BOTTOM);
-        overlayParams.setMargins(dp(16), 0, dp(16), dp(14));
+        overlayParams.setMargins(dp(14), 0, dp(14), dp(10));
         artworkFrame.addView(title, overlayParams);
 
-        TextView summary = label(shortSummary(profile), 14, true);
-        summary.setPadding(0, dp(8), 0, 0);
-        summary.setLineSpacing(dp(3), 1f);
+        TextView summary = label(shortSummary(profile), 13, true);
+        summary.setPadding(0, dp(4), 0, 0);
+        summary.setLineSpacing(dp(1), 1f);
         root.addView(summary);
 
         return new ProfileCard(root, artworkFrame, artwork, summary);
@@ -248,13 +251,13 @@ public final class MainActivity extends Activity {
     private String shortSummary(SoundProfile profile) {
         switch (profile) {
             case SMART:
-                return "Adaptive sound for every scenario.";
+                return "Automatically adapts sound to your content.";
             case MOVIE:
                 return "Surround sound with clearer voices.";
             case GAMING:
-                return "Sharper details for game audio.";
+                return "Enhances details for immersive gameplay.";
             case MUSIC:
-                return "Balanced vocals and instruments.";
+                return "Rich, balanced sound with customizable EQ.";
             default:
                 return profile.getSummary();
         }
@@ -380,8 +383,8 @@ public final class MainActivity extends Activity {
             super.onDraw(canvas);
             float w = getWidth();
             float h = getHeight();
-            float top = dp(18);
-            float bottom = h - dp(26);
+            float top = dp(10);
+            float bottom = h - dp(18);
             float zeroY = gainToY(0, top, bottom);
             float labelX = dp(34);
             float leftInset = dp(54);
@@ -409,11 +412,11 @@ public final class MainActivity extends Activity {
 
                 paint.setStyle(Paint.Style.FILL);
                 paint.setColor(colors.card);
-                canvas.drawCircle(x, y, dp(10), paint);
+                canvas.drawCircle(x, y, dp(9), paint);
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setStrokeWidth(dp(2));
                 paint.setColor(colors.objectShade);
-                canvas.drawCircle(x, y, dp(10), paint);
+                canvas.drawCircle(x, y, dp(9), paint);
                 paint.setStyle(Paint.Style.FILL);
 
                 paint.setTextAlign(Paint.Align.CENTER);
@@ -477,8 +480,8 @@ public final class MainActivity extends Activity {
             if (activeBand < 0) {
                 return;
             }
-            float top = dp(18);
-            float bottom = getHeight() - dp(26);
+            float top = dp(10);
+            float bottom = getHeight() - dp(18);
             float clampedY = Math.max(top, Math.min(bottom, y));
             float normalized = 1f - ((clampedY - top) / (bottom - top));
             int gain = Math.round(MIN_GAIN + normalized * (MAX_GAIN - MIN_GAIN));
@@ -585,13 +588,15 @@ public final class MainActivity extends Activity {
     private final class ProfileArtwork extends View {
         private final SoundProfile profile;
         private final ColorScheme colors;
-        private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
+        private final Bitmap stockArtwork;
         private boolean selected;
 
         ProfileArtwork(Activity activity, SoundProfile profile, ColorScheme colors) {
             super(activity);
             this.profile = profile;
             this.colors = colors;
+            this.stockArtwork = BitmapFactory.decodeResource(getResources(), stockArtworkResource(profile));
         }
 
         void setSelectedState(boolean selected) {
@@ -605,23 +610,20 @@ public final class MainActivity extends Activity {
             float w = getWidth();
             float h = getHeight();
             drawBackdrop(canvas, w, h);
+        }
 
+        private int stockArtworkResource(SoundProfile profile) {
             switch (profile) {
                 case SMART:
-                    drawSmart(canvas, w, h);
-                    break;
+                    return R.drawable.oreality_mode_smart;
                 case MOVIE:
-                    drawMovie(canvas, w, h);
-                    break;
+                    return R.drawable.oreality_mode_movie;
                 case GAMING:
-                    drawGaming(canvas, w, h);
-                    break;
+                    return R.drawable.oreality_mode_game;
                 case MUSIC:
-                    drawMusic(canvas, w, h);
-                    break;
+                    return R.drawable.oreality_mode_music;
                 default:
-                    drawSmart(canvas, w, h);
-                    break;
+                    return R.drawable.oreality_mode_smart;
             }
         }
 
@@ -638,6 +640,15 @@ public final class MainActivity extends Activity {
                     Shader.TileMode.CLAMP));
             canvas.drawRoundRect(bounds, radius, radius, paint);
             paint.setShader(null);
+
+            if (stockArtwork != null) {
+                canvas.save();
+                Path clip = new Path();
+                clip.addRoundRect(bounds, radius, radius, Path.Direction.CW);
+                canvas.clipPath(clip);
+                canvas.drawBitmap(stockArtwork, null, bounds, paint);
+                canvas.restore();
+            }
 
             if (selected) {
                 paint.setStyle(Paint.Style.STROKE);
@@ -759,7 +770,7 @@ public final class MainActivity extends Activity {
             canvas.drawLine(cx - dp(4f), cy - dp(12f), cx + dp(15f), cy - dp(17f), paint);
 
             paint.setStyle(Paint.Style.FILL);
-            canvas.drawOval(new RectF(cx - dp(18f), cy + dp(9f), cx - dp(3f), cy + dp(21f)), paint);
+            canvas.drawOval(new RectF(cx - dp(17f), cy + dp(8f), cx - dp(2f), cy + dp(20f)), paint);
             canvas.drawOval(new RectF(cx + dp(2f), cy + dp(4f), cx + dp(17f), cy + dp(16f)), paint);
 
             // Sound vibe arcs

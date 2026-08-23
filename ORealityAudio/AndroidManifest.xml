@@ -41,6 +41,18 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="com.android.settings.action.IA_SETTINGS" />
+            </intent-filter>
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.sound" />
+            <meta-data
+                android:name="com.android.settings.summary_uri"
+                android:value="content://com.oplus.oreality.audio.summary/oreality" />
+            <meta-data
+                android:name="com.android.settings.group_key"
+                android:value="system_sounds_and_vibrations_category" />
         </activity>
         <service
             android:name=".ORealityTileService"
@@ -63,6 +75,10 @@
                 <action android:name="android.media.action.CLOSE_AUDIO_EFFECT_CONTROL_SESSION" />
             </intent-filter>
         </receiver>
+        <provider
+            android:name=".ORealitySummaryProvider"
+            android:authorities="com.oplus.oreality.audio.summary"
+            android:exported="true" />
     </application>
 
 </manifest>

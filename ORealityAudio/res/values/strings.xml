@@ -3,4 +3,6 @@
     <string name="qs_tile_oreality_audio">OReality Audio</string>
     <string name="qs_tile_oreality_audio_on">On</string>
     <string name="qs_tile_oreality_audio_off">Off</string>
+    <string name="settings_oreality_on_with_profile">%1$s</string>
+    <string name="settings_oreality_off">Off</string>
 </resources>

@@ -1,10 +1,10 @@
 package com.oplus.oreality.audio.data;
 
 public enum SoundProfile {
-    SMART("Smart", "Applies the optimal sound mode according to your scenario.", 6),
-    MOVIE("Movie", "Real surround sound and clearer voices.", 2),
-    GAMING("Gaming", "Brings out hidden details in game sounds.", 3),
-    MUSIC("Music", "Faithfully reproduces vocals and instruments.", 1);
+    SMART("Smart", "Automatically adapts sound to your content.", 6),
+    MOVIE("Movie", "Surround sound with clearer voices.", 2),
+    GAMING("Gaming", "Enhances details for immersive gameplay.", 3),
+    MUSIC("Music", "Rich, balanced sound with customizable EQ.", 1);
 
     private final String title;
     private final String summary;
