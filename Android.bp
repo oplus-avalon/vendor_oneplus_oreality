@@ -1,25 +1,11 @@
-prebuilt_etc {
-    name: "privapp-com.oplus.oreality.audio.xml",
-    src: "permissions/privapp-com.oplus.oreality.audio.xml",
-    sub_dir: "permissions",
-}
+//
+// Automatically generated file. DO NOT MODIFY
+//
 
-prebuilt_etc {
-    name: "config-com.oplus.oreality.audio.xml",
-    src: "permissions/config-com.oplus.oreality.audio.xml",
-    sub_dir: "sysconfig",
-}
-
-prebuilt_etc {
-    name: "oplus.software.audio.audioeffect_support.xml",
-    src: "permissions/oplus.software.audio.audioeffect_support.xml",
-    sub_dir: "permissions",
-}
-
-prebuilt_etc {
-    name: "oplus.software.audio.audiox_support.xml",
-    src: "permissions/oplus.software.audio.audiox_support.xml",
-    sub_dir: "permissions",
+soong_namespace {
+    imports: [
+        "vendor/oneplus/macan",
+    ],
 }
 
 cc_prebuilt_library_shared {
@@ -30,27 +16,20 @@ cc_prebuilt_library_shared {
     },
     target: {
         android_arm64: {
-            srcs: ["proprietary/odm/lib64/liboplus_audiox.so"],
+            srcs: [
+                "proprietary/odm/lib64/liboplus_audiox.so",
+            ],
+            shared_libs: [
+                "libc",
+                "libdl",
+                "libm",
+                "liblog",
+                "libMNN",
+            ],
         },
     },
     compile_multilib: "64",
-    check_elf_files: false,
-    device_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "liboppo_audiox",
-    owner: "oneplus",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm64: {
-            srcs: ["proprietary/odm/lib64/liboppo_audiox.so"],
-        },
-    },
-    compile_multilib: "64",
-    check_elf_files: false,
+    prefer: true,
     device_specific: true,
 }
 
@@ -62,28 +41,27 @@ cc_prebuilt_library_shared {
     },
     target: {
         android_arm64: {
-            srcs: ["proprietary/odm/lib64/soundfx/libOplusAudioxAidl.so"],
+            srcs: [
+                "proprietary/odm/lib64/soundfx/libOplusAudioxAidl.so",
+            ],
+            shared_libs: [
+                "libutils",
+                "libhidlbase",
+                "libbinder_ndk",
+                "libc",
+                "libc++_shared",
+                "libdl",
+                "liblog",
+                "libm",
+                "libfmq",
+                "libaudioutils",
+                "libcutils",
+                "liboplus_audiox",
+            ],
         },
     },
-    relative_install_path: "soundfx",
     compile_multilib: "64",
-    check_elf_files: false,
-    device_specific: true,
-}
-
-cc_prebuilt_library_shared {
-    name: "liboppo_audiox_sw_effects",
-    owner: "oneplus",
-    strip: {
-        none: true,
-    },
-    target: {
-        android_arm64: {
-            srcs: ["proprietary/odm/lib64/soundfx/liboppo_audiox_sw_effects.so"],
-        },
-    },
     relative_install_path: "soundfx",
-    compile_multilib: "64",
-    check_elf_files: false,
+    prefer: true,
     device_specific: true,
 }

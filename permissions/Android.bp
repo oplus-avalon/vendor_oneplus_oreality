@@ -1,0 +1,23 @@
+prebuilt_etc {
+    name: "privapp-com.oplus.oreality.audio.xml",
+    src: "privapp-com.oplus.oreality.audio.xml",
+    sub_dir: "permissions",
+}
+
+prebuilt_etc {
+    name: "config-com.oplus.oreality.audio.xml",
+    src: "config-com.oplus.oreality.audio.xml",
+    sub_dir: "sysconfig",
+}
+
+prebuilt_etc {
+    name: "oplus.software.audio.audioeffect_support.xml",
+    src: "oplus.software.audio.audioeffect_support.xml",
+    sub_dir: "permissions",
+}
+
+prebuilt_etc {
+    name: "oplus.software.audio.audiox_support.xml",
+    src: "oplus.software.audio.audiox_support.xml",
+    sub_dir: "permissions",
+}
