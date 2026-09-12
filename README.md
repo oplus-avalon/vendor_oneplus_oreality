@@ -1,5 +1,12 @@
 # OReality Audio
 
+## Screenshots
+
+<p>
+  <img src="screenshots/profiles.png" alt="OReality Audio sound profiles" width="280" />
+  <img src="screenshots/equalizer.png" alt="OReality Audio Music profile and equalizer" width="280" />
+</p>
+
 ## Setup
 
 1. Clone this repository into:
