@@ -45,6 +45,7 @@ cc_prebuilt_library_shared {
                 "proprietary/odm/lib64/soundfx/libOplusAudioxAidl.so",
             ],
             shared_libs: [
+                "libbase",
                 "libutils",
                 "libhidlbase",
                 "libbinder_ndk",

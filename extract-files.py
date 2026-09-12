@@ -5,6 +5,7 @@
 
 import sys
 
+from extract_utils.fixups_blob import blob_fixup
 from extract_utils.main import ExtractUtils, ExtractUtilsModule
 
 
@@ -13,6 +14,10 @@ module = ExtractUtilsModule(
     'oneplus',
     device_rel_path='vendor/oneplus/oreality',
     namespace_imports=['vendor/oneplus/macan'],
+    blob_fixups={
+        'odm/lib64/soundfx/libOplusAudioxAidl.so': blob_fixup()
+        .add_needed('libbase.so'),
+    },
     check_elf=True,
 )
 
